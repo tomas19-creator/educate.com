@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Estado de Estudio</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      margin-bottom: 40px;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .verde { background-color: #4CAF50; color: white; }
+    .rojo { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>¿Qué estás haciendo?</h1>
+  <button class="verde" onclick="enviarEstado('estudiando')">Estoy Estudiando</button>
+  <button class="rojo" onclick="enviarEstado('descansando')">No estoy haciendo nada</button>
+
+  <script>
+    const ipESP32 = "http://192.168.1.100"; // Reemplaza con la IP real
+
+    function enviarEstado(estado) {
+      fetch(`${ipESP32}/estado/${estado}`)
+        .then(res => res.text())
+        .then(texto => alert(texto))
+        .catch(err => alert("Error al enviar estado: " + err));
+    }
+  </script>
+</body>
+</html>
